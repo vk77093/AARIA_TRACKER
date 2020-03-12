@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTrackermastersTable extends Migration
+
+class CreateVisitUpdatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +14,25 @@ class CreateTrackermastersTable extends Migration
      */
     public function up()
     {
-        Schema::create('trackermasters', function (Blueprint $table) {
+      //Schema::enableForeignKeyConstraints();
+        Schema::create('visit_updates', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id');
-            $table->string('comp_name');
-            $table->longText('address');
-            $table->string('contact_person');
-            $table->bigInteger('mobileNum');
-            $table->string('designation');
-            $table->string('natureBuss');
-            $table->date('dateOfVisit');
-            $table->string('purposeVisit');
-            $table->longText('mom');
-            $table->string('visitStatus');
-            $table->longText('reviewpoints');
-            $table->string('comptbrand');
-            $table->longText('Interested');
-            $table->string('callProd');
+            //$table->integer('user_id');
+            // $table->string('comp_name');
+            // $table->longText('address');
+            // $table->bigInteger('mobileNum');
+            // $table->string('contact_person');
+            // $table->string('designation');
+            // $table->string('natureBuss');
+            // $table->string('comptbrand');
+            // $table->date('dateOfVisit1');
+            // $table->string('purposeVisit1');
+            // $table->string('remarks1');
+            // $table->unsignedBigInteger('trackermasters_id');
+            $table->integer('trackermaster_id');
+            // $table->foreign('trackermaster_id')->reference('id')->on('trackermasters')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreignId('trackermasters_id')->constrained();
+
             $table->date('dateOfVisit2')->nullable(true);
            $table->string('purposeVisit2')->nullable(true);
             $table->longText('remarks2')->nullable(true);
@@ -64,6 +67,6 @@ class CreateTrackermastersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trackermasters');
+        Schema::dropIfExists('visit_updates');
     }
 }

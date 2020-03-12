@@ -8,18 +8,24 @@
           {{__('AARIA TRACKER DATA')}}
         </div>
         <div class="card-body">
-          <form method="post" action="{{route('trackerSubmit.store')}}">
+          <form method="post" action="{{route('userauth.trackerSubmit.store')}}">
             @csrf
 <div class="form-group row">
   <label for="comp_name" class="col-md-4 col-form-label text-md-right">{{__('Comapany/Person Name')}}</label>
   <div class="col-md-6">
-    <input id="comp_name" type="text" name="comp_name" class="form-control" required autocomplete="comp_name" autofocus>
+    <input id="comp_name" type="text" name="comp_name" class="form-control" required autocomplete="comp_name" value="{{old('comp_name')}}" autofocus>
   </div>
 </div>
 <div class="form-group row">
   <label for="address" class="col-md-4 col-form-label text-md-right">{{__('Address Of Party')}}</label>
   <div class="col-md-6">
     <textarea id="address" class="form-control" name="address" rows="3" required></textarea>
+  </div>
+</div>
+<div class="form-group row">
+  <label for="conatct_person" class="col-md-4 col-form-label text-md-right">{{__('Contact Person')}}</label>
+  <div class="col-md-6">
+    <input id="conatct_person" type="text" name="contact_person" class="form-control" required />
   </div>
 </div>
        <div class="form-group row">
@@ -101,13 +107,13 @@
       <div class="form-group row">
         <label for="Interested" class="col-md-4 col-form-label text-md-right">{{__('Interested In Which Segment')}}</label>
       <div class="col-md-6">
-        <select class="form-control" multiple id="Interested" name="Interested"  value="{{'Interested'}}"  required>
+        <select class="form-control custom-scroll" multiple="multiple" id="Interested" name="Interested[]"  value="{{'Interested'}}"  required>
       <option value selected disabled="0">
         ----Please Select the Interested Segment (Multiple)------
       </option>
-      <option value="DC">Dark Chocolate</option>
-      <option value="MC">Milk Chocolate</option>
-      <option value="WC">White</option>
+      <option value="Dark Chocolate">Dark Chocolate</option>
+      <option value="Milk Chocolate">Milk Chocolate</option>
+      <option value="White">White</option>
       <option value="Fillings">Fillings</option>
       <option value="Paste">Paste</option>
         </select>
@@ -127,22 +133,7 @@
           </select>
         </div>
       </div>
-<!---- stating of code---->
-      <!-- <div class="form-group row">
-        <label for="callProd" class="col-md-4 col-form-label text-md-right" required>{{__('Call Productive')}}</label>
-        <div class="col-md-6">
-          <select class="mdb-select md-form" multiple>
-  <option value="" disabled selected>Choose your country</option>
-  <option value="1">USA</option>
-  <option value="2">Germany</option>
-  <option value="3">France</option>
-  <option value="4">Poland</option>
-  <option value="5">Japan</option>
-</select>
-<button class="btn-save btn btn-primary btn-sm">Save</button>
-        </div>
-      </div> -->
-      <!--end of code----->
+
       <div class="form-group row mb-0">
                           <div class="col-md-6 offset-md-4">
                               <button type="submit" class="btn btn-primary">
@@ -158,9 +149,3 @@
 </div>
 
 @endsection
-<script>
-// Material Select Initialization
-// $(document).ready(function() {
-// $('.mdb-select').materialSelect();
-// });
-</script>

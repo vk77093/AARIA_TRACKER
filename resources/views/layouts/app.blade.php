@@ -61,6 +61,18 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    <a class="dropdown-item" href="/trackerSubmit/create"
+                                     ">
+                                       {{ __('Enter Data') }}
+                                   </a>
+                                   <a class="dropdown-item" href="/trackerSubmit"
+                                    ">
+                                      {{ __('View Data') }}
+                                  </a>
+                                  <a class="dropdown-item" href="/home"
+                                   ">
+                                     {{ __('HOME') }}
+                                 </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

@@ -23,6 +23,26 @@ class User extends Authenticatable
       return $this->hasMany('App\Trackermaster');
     }
 
+    public function visit_updates(){
+      return $this->hasMany('App\VisitUpdate');
+    }
+
+    public function isUser(){
+      if($this->user_role=='user'){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    // for admin right
+    public function isAdmin(){
+      if($this->user_role=='admin'){
+        return true;
+      }else{
+        return false;
+      }
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

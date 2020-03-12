@@ -20,8 +20,8 @@
 
                 <hr />
                 <div class="card-body">
-                  <a href="/trackerSubmit"><button type="button" class="btn btn-outline-primary btn-lg">Enter Data--></button></a>
-                  <a href="#"><button type="button" class="btn btn-outline-secondary btn-lg">View Data--></button></a>
+                  <a href="/trackerSubmit/create"><button type="button" class="btn btn-outline-primary btn-lg">Enter Data--></button></a>
+                  <a href="/trackerSubmit"><button type="button" class="btn btn-outline-secondary btn-lg">View Data--></button></a>
                 </div>
 
             </div>

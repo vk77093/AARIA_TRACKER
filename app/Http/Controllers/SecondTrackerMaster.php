@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use App\User;
 use Auth;
+use App\VisitUpdate;
 use App\Trackermaster;
+use Illuminate\Support\Facades\Session;
 
-class Tracker extends Controller
+class SecondTrackerMaster extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +18,12 @@ class Tracker extends Controller
      */
     public function index()
     {
+       $id = Auth::id();
+      // $trackerData=Trackermaster::where('user_id','=',$id)->orderBy('id','desc')->get();
+      // $secondTrackerData=VisitUpdate::orderBy('id','desc')->get();
+      $secondTrackerData=VisitUpdate::orderBy('id','desc')->get();
+      return view('AariaData.secondView',compact('secondTrackerData'));
 
-      //$userid=User::findOrFail($id);
-      $id = Auth::id();
-      $trackerData=Trackermaster::where('user_id','=',$id)->orderBy('id','desc')->paginate(4);
-        return view('AariaData.Userview',compact('trackerData'));
     }
 
     /**
@@ -31,7 +33,7 @@ class Tracker extends Controller
      */
     public function create()
     {
-        return view('AariaData.enterData');
+          return view('AariaData.VisitUpdate');
     }
 
     /**
@@ -42,16 +44,35 @@ class Tracker extends Controller
      */
     public function store(Request $request)
     {
-      $data = $request->input('Interested');
-      $data = implode(',', $data);
-      $input=$request->except('Interested');
-      $input['Interested']=$data;
-      //$input=$request->all();
-      $user=Auth::user();
-      $user->trackermasters();
-      $user->trackermasters()->create($input);
+      // $input=$request->all();
+      //   $user=Auth::user();
+      //   $user->visit_updates();
+      //   $user->visit_updates()->create($input);
+
+      // $trackerData=new Tracker();
+      // $trackerData=$request['user_id'];
+      // $trackerData=$request['comp_name'];
+      // $input=$request->all();
+      // $visitData=new Trackermaster();
+      // $visitData->visit_updates();
+      // $visitData->visit_updates()->create($visitData);
+      //VisitUpdate::create($request->all());
+      // $data=$request->input('trackermasters_id');
+      // $data1=$request->input('comp_name');
+      // $data2->$request->input('address');
+      // $input['trackermasters_id']=$data;
+      // $input['comp_name']=$data1;
+      // $input['address']=$data2;
+
+// $input=$request->all();
+//       $user=new trackermasters();
+//        $user->visit_updates();
+//        $user->visit_updates()->create($input);
+
+VisitUpdate::create($request->all());
 Session::flash('Data_Submit','A new User data Got Is Submitted');
-return redirect('/trackerSubmit');
+        return redirect('/trackerSecond');
+
     }
 
     /**
@@ -62,16 +83,8 @@ return redirect('/trackerSubmit');
      */
     public function show($id)
     {
-        $trackerData=Trackermaster::findOrFail($id);
-        //$trackerData=Trackermaster::findOrFail($comp_name);
-        // return view('AariaData.secondAdd',compact('trackerData'));
-        return view('AariaData.updatedata',compact('trackerData'));
+        //
     }
-
-    // public function showCompName(){
-    //   $trackerData=Trackermaster::all();
-    //   return view('AariaData.secondAdd',compact('trackerData'));
-    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -81,9 +94,7 @@ return redirect('/trackerSubmit');
      */
     public function edit($id)
     {
-      $trackerData=Trackermaster::findOrFail($id);
-
-      return view('AariaData.updatedata',compact('trackerData'));
+        //
     }
 
     /**
@@ -95,9 +106,7 @@ return redirect('/trackerSubmit');
      */
     public function update(Request $request, $id)
     {
-      $trackerData=Trackermaster::findOrFail($id);
-      $trackerData->update($request->all());
-      return redirect('/trackerSubmit');
+        //
     }
 
     /**

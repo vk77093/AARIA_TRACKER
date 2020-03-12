@@ -16,6 +16,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+//Auth::Routes(['register'=>False]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware'=>'userauth','as'=>'userauth.'],function(){
 Route::resource('/trackerSubmit','Tracker');
+//Route::get('/trackerSubmit','Tracker@showname');
+Route::resource('/trackerSecond','SecondTrackerMaster');
+});
