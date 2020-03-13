@@ -15,12 +15,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+  Auth::routes();
 //Auth::Routes(['register'=>False]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware'=>'userauth','as'=>'userauth.'],function(){
 Route::resource('/trackerSubmit','Tracker');
+
+// Auth::Routes(['login'=>True]);
+// Auth::Routes(['logout'=>True]);
+// Auth::Routes(['register'=>False]);
+// Route::get('auth/login', 'Auth\AuthController@getLogin');
+// Route::post('auth/login', 'Auth\AuthController@postLogin');
+// Route::get('auth/logout', 'Auth\AuthController@getLogout');
 //Route::get('/trackerSubmit','Tracker@showname');
-Route::resource('/trackerSecond','SecondTrackerMaster');
+
+});
+Route::group(['middleware'=>'adminauth','as'=>'adminauth.'],function(){
+  Route::resource('/trackerSecond','SecondTrackerMaster');
+  Route::get('/sortedData','SecondTrackerMaster@sortForm');
+
+
+  //Auth::routes();
+//   Route::get('auth/register', ['middleware'=>'adminauth', 'uses'=>'Auth\AuthController@getRegister']);
+// Route::post('auth/register', ['middleware'=>'adminauth', 'uses'=>'Auth\AuthController@postRegister']);
 });

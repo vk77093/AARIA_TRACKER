@@ -6,15 +6,14 @@
 }
 </style>
 <div class="alert alert-info" role="alert">
-        <h6 class="text-center" style="margin-top:2px;">User DATA</h6>
+        <h6 class="text-center" style="margin-top:2px;">ALL User DATA</h6>
         </div>
 <br />
-@if(Session::has('Data_Submit'))
+@if(Session::has('Data_Submit2'))
 <p class="alert alert-danger">
-  {{session('Data_Submit')}}
+  {{session('Data_Submit2')}}
 </p>
 @endif
-
 <table class="table table-hover table-bordered table-condensed mystyle">
   <thead>
     <tr>
@@ -62,12 +61,12 @@
     </tr>
   </thead>
   <tbody>
-    @if($trackerData)
-    @foreach($trackerData as $data)
+  @if($AlltrackerData)
+    @foreach($AlltrackerData as $data)
     <tr>
-      <td><a href="{{route('userauth.trackerSubmit.edit',$data->id)}}">{{$data->id}}</a></td>
+        <td><a href="{{route('adminauth.trackerSecond.edit',$data->id)}}">{{$data->id}}</a></td>
       <td>{{$data->user->name}}</td>
-<td><a href="{{route('userauth.trackerSubmit.show',$data->comp_name)}}">{{$data->comp_name}}</a></td>
+<td><a href="{{route('adminauth.trackerSecond.show',$data->comp_name)}}">{{$data->comp_name}}</a></td>
       <td>{{$data->address}}</td>
       <td>{{$data->mobileNum}}</td>
       <td>{{$data->contact_person}}</td>
@@ -110,11 +109,4 @@
   </tbody>
 
 </table>
-
-<nav aria-label="Page navigation example">
- <ul class="pagination justify-content-center">
-    {{$trackerData->render()}}
-  </ul>
-
-</nav>
 @endsection

@@ -19,10 +19,20 @@
                 </div>
 
                 <hr />
+                @if(Auth::user()->user_role=='user')
                 <div class="card-body">
                   <a href="/trackerSubmit/create"><button type="button" class="btn btn-outline-primary btn-lg">Enter Data--></button></a>
                   <a href="/trackerSubmit"><button type="button" class="btn btn-outline-secondary btn-lg">View Data--></button></a>
                 </div>
+                @else
+                <div class="card-body">
+                  <!-- <a href="/trackerSubmit/create"><button type="button" class="btn btn-outline-primary btn-lg">Enter Data></button></a>
+                  <a href="/trackerSubmit"><button type="button" class="btn btn-outline-secondary btn-lg">View Data></button></a> -->
+                  <a href="/trackerSecond"><button type="button" class="btn btn-outline-secondary btn-lg">View ALL Data--></button></a>
+                  <a href="/sortedData"><button type="button" class="btn btn-outline-secondary btn-lg">View Sort Data--></button></a>
+                  <a href="/register"><button type="button" class="btn btn-outline-secondary btn-lg">Create User--></button></a>
+                </div>
+                @endif
 
             </div>
         </div>

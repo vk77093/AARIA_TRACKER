@@ -60,12 +60,13 @@ return redirect('/trackerSubmit');
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($comp_name)
     {
-        $trackerData=Trackermaster::findOrFail($id);
+
+        $trackerData=Trackermaster::findOrFail($comp_name);
         //$trackerData=Trackermaster::findOrFail($comp_name);
         // return view('AariaData.secondAdd',compact('trackerData'));
-        return view('AariaData.updatedata',compact('trackerData'));
+        return view('AariaData.hotelWise',compact('trackerData'));
     }
 
     // public function showCompName(){
@@ -97,6 +98,7 @@ return redirect('/trackerSubmit');
     {
       $trackerData=Trackermaster::findOrFail($id);
       $trackerData->update($request->all());
+      Session::flash('Data_Submit','A new User data Got Updated');
       return redirect('/trackerSubmit');
     }
 

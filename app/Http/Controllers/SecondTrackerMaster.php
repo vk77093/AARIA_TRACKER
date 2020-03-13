@@ -9,6 +9,7 @@ use App\VisitUpdate;
 use App\Trackermaster;
 use Illuminate\Support\Facades\Session;
 
+
 class SecondTrackerMaster extends Controller
 {
     /**
@@ -18,12 +19,20 @@ class SecondTrackerMaster extends Controller
      */
     public function index()
     {
-       $id = Auth::id();
+$AlltrackerData=Trackermaster::orderBy('id','desc')->get();
+return view('AariaData.admin.view',compact('AlltrackerData'));
+       //$id = Auth::id();
       // $trackerData=Trackermaster::where('user_id','=',$id)->orderBy('id','desc')->get();
       // $secondTrackerData=VisitUpdate::orderBy('id','desc')->get();
-      $secondTrackerData=VisitUpdate::orderBy('id','desc')->get();
-      return view('AariaData.secondView',compact('secondTrackerData'));
+      // $secondTrackerData=VisitUpdate::orderBy('id','desc')->get();
+      // return view('AariaData.secondView',compact('secondTrackerData'));
 
+    }
+
+    public function sortForm(){
+      $allUser=User::pluck('id','name')->all();
+
+      return view('AariaData.admin.sortview',compact('alluser'));
     }
 
     /**
@@ -33,7 +42,8 @@ class SecondTrackerMaster extends Controller
      */
     public function create()
     {
-          return view('AariaData.VisitUpdate');
+
+          //return view('AariaData.VisitUpdate');
     }
 
     /**
@@ -44,6 +54,17 @@ class SecondTrackerMaster extends Controller
      */
     public function store(Request $request)
     {
+      $data = $request->input('Interested');
+      $data = implode(',', $data);
+      $input=$request->except('Interested');
+      $input['Interested']=$data;
+      //$input=$request->all();
+      $user=Auth::user();
+      $user->trackermasters();
+      $user->trackermasters()->create($input);
+      Session::flash('Data_Submit2','A new User data Got Is Submitted');
+      return redirect('/trackerSecond');
+
       // $input=$request->all();
       //   $user=Auth::user();
       //   $user->visit_updates();
@@ -69,9 +90,9 @@ class SecondTrackerMaster extends Controller
 //        $user->visit_updates();
 //        $user->visit_updates()->create($input);
 
-VisitUpdate::create($request->all());
-Session::flash('Data_Submit','A new User data Got Is Submitted');
-        return redirect('/trackerSecond');
+// VisitUpdate::create($request->all());
+// Session::flash('Data_Submit','A new User data Got Is Submitted');
+//         return redirect('/trackerSecond');
 
     }
 
@@ -94,7 +115,9 @@ Session::flash('Data_Submit','A new User data Got Is Submitted');
      */
     public function edit($id)
     {
-        //
+      $AlltrackerData=Trackermaster::findOrFail($id);
+
+      return view('AariaData.admin.updateTable',compact('AlltrackerData'));
     }
 
     /**
@@ -106,7 +129,10 @@ Session::flash('Data_Submit','A new User data Got Is Submitted');
      */
     public function update(Request $request, $id)
     {
-        //
+      $AlltrackerData=Trackermaster::findOrFail($id);
+      $AlltrackerData->update($request->all());
+      Session::flash('Data_Submit2','A new User data Got Updated');
+      return redirect('/trackerSecond');
     }
 
     /**
