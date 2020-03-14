@@ -66,7 +66,11 @@
     <tr>
         <td><a href="{{route('adminauth.trackerSecond.edit',$data->id)}}">{{$data->id}}</a></td>
       <td>{{$data->user->name}}</td>
+
 <td><a href="{{route('adminauth.trackerSecond.show',$data->comp_name)}}">{{$data->comp_name}}</a></td>
+
+
+
       <td>{{$data->address}}</td>
       <td>{{$data->mobileNum}}</td>
       <td>{{$data->contact_person}}</td>

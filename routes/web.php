@@ -33,7 +33,9 @@ Route::resource('/trackerSubmit','Tracker');
 });
 Route::group(['middleware'=>'adminauth','as'=>'adminauth.'],function(){
   Route::resource('/trackerSecond','SecondTrackerMaster');
-  Route::get('/sortedData','SecondTrackerMaster@sortForm');
+ Route::get('/sortedData','SecondTrackerMaster@sortForm');
+ Route::post('/sortedData2','SecondTrackerMaster@sortFormSearch');
+ Route::get('/sortedDataView','SecondTrackerMaster@myview');
 
 
   //Auth::routes();

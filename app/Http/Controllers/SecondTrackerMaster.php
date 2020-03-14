@@ -28,11 +28,33 @@ return view('AariaData.admin.view',compact('AlltrackerData'));
       // return view('AariaData.secondView',compact('secondTrackerData'));
 
     }
+    public function alluserWise(){
+
+    }
 
     public function sortForm(){
-      $allUser=User::pluck('id','name')->all();
+      $user=User::all();
+      $trackerData=Trackermaster::all();
+      $allUser=$user->pluck('name','id');
+      $state=$user->pluck('cityregion')->unique();
+      $hotel=$trackerData->pluck('comp_name')->unique();
 
-      return view('AariaData.admin.sortview',compact('alluser'));
+      return view('AariaData.admin.sortview',compact('allUser','state','hotel'));
+    }
+
+    public function sortFormSearch(Request $request){
+      $user=User::all();
+      $userName=$request->input('name','state');
+      if($userName){
+        $user->where('name','LIKE','%'.$userName)->all();
+          return view('AariaData.admin.sortviewTest',compact('userName','user'));
+      }
+
+      else{
+        $message="No data Found";
+        return view('AariaData.admin.sortviewTest',compact('message'));
+      }
+
     }
 
     /**
@@ -42,7 +64,10 @@ return view('AariaData.admin.view',compact('AlltrackerData'));
      */
     public function create()
     {
+      $user=User::all();
+      $allUser=$user->pluck('id','name');
 
+      return view('AariaData.admin.sortview',compact('allUser'));
           //return view('AariaData.VisitUpdate');
     }
 
@@ -104,7 +129,19 @@ return view('AariaData.admin.view',compact('AlltrackerData'));
      */
     public function show($id)
     {
-        //
+
+      $user=User::all();
+      $trackerData=Trackermaster::all();
+
+
+      return view('AariaData.admin.allSortedGet',compact('trackerData'));
+
+    }
+
+    public function myview(Request $request, $id){
+      // $AlltrackerData=Trackermaster::findOrFail($id);
+      // $AlltrackerData->get($request->all());
+      // return view('admin.allSortedGet');
     }
 
     /**
@@ -115,9 +152,14 @@ return view('AariaData.admin.view',compact('AlltrackerData'));
      */
     public function edit($id)
     {
+      $trackerData=Trackermaster::all();
       $AlltrackerData=Trackermaster::findOrFail($id);
+      // $AlltrackerData=Trackermaster::findOrFail([$id,$comp_name]);
 
-      return view('AariaData.admin.updateTable',compact('AlltrackerData'));
+
+
+
+      return view('AariaData.admin.updateTable',compact('AlltrackerData','trackerData'));
     }
 
     /**
