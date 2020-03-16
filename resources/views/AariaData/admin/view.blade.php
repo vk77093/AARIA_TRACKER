@@ -33,10 +33,9 @@
        <th>Compotitors Brand</th>
         <th>Interested Segmanet</th>
         <th>call Productive</th>
-
-    <th>dateOfVisit2</th>
-    <th>purposeVisit2</th>
-    <th>remarks2</th>
+      <th>dateOfVisit2</th>
+      <th>purposeVisit2</th>
+      <th>remarks2</th>
         <th>dateOfVisit3</th>
         <th>purposeVisit3</th>
         <th>remarks3</th>

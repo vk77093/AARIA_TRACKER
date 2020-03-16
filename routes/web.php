@@ -36,6 +36,7 @@ Route::group(['middleware'=>'adminauth','as'=>'adminauth.'],function(){
  Route::get('/sortedData','SecondTrackerMaster@sortForm');
  Route::post('/sortedData2','SecondTrackerMaster@sortFormSearch');
  Route::get('/sortedDataView','SecondTrackerMaster@myview');
+  Route::get('/datatable','SecondTrackerMaster@datatable');
 
 
   //Auth::routes();

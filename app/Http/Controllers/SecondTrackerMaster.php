@@ -28,6 +28,10 @@ return view('AariaData.admin.view',compact('AlltrackerData'));
       // return view('AariaData.secondView',compact('secondTrackerData'));
 
     }
+    public function datatable(){
+      $AlltrackerData=Trackermaster::all();
+      return view('AariaData.admin.dataTableExample',compact('AlltrackerData'));
+    }
     public function alluserWise(){
 
     }
