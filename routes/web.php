@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware'=>'userauth','as'=>'userauth.'],function(){
 Route::resource('/trackerSubmit','Tracker');
+Route::resource('/comp','CompanyMasterController');
 
 // Auth::Routes(['login'=>True]);
 // Auth::Routes(['logout'=>True]);
@@ -37,7 +38,8 @@ Route::group(['middleware'=>'adminauth','as'=>'adminauth.'],function(){
  Route::post('/sortedData2','SecondTrackerMaster@sortFormSearch');
  Route::get('/sortedDataView','SecondTrackerMaster@myview');
   Route::get('/datatable','SecondTrackerMaster@datatable');
-
+  Route::get('/userData','SecondTrackerMaster@userDataFetch');
+Route::get('/userData','SecondTrackerMaster@search');
 
   //Auth::routes();
 //   Route::get('auth/register', ['middleware'=>'adminauth', 'uses'=>'Auth\AuthController@getRegister']);

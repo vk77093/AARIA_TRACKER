@@ -18,6 +18,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password','empCode','mobileNum','designation','region','regionHead','group','cityregion','user_role',
     ];
+    //protected $primaryKey = 'user_id';
 
     public function trackermasters(){
       return $this->hasMany('App\Trackermaster');
@@ -25,6 +26,9 @@ class User extends Authenticatable
 
     public function visit_updates(){
       return $this->hasMany('App\VisitUpdate');
+    }
+    public function compmaster(){
+      return $this->hasMany('App\CompanyMaster');
     }
 
     public function isUser(){

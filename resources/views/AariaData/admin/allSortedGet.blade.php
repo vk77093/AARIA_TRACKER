@@ -1,4 +1,4 @@
-@extends('layouts.app')
+ @extends('layouts.app')
 @section('content')
 
 <h4>Hii i will provide you the sorted data</h4>

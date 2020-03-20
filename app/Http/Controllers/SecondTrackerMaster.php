@@ -35,6 +35,10 @@ return view('AariaData.admin.view',compact('AlltrackerData'));
     public function alluserWise(){
 
     }
+    public function userDataFetch(){
+      $userData=User::all();
+      return view('AariaData.admin.viewUser',compact('userData'));
+    }
 
     public function sortForm(){
       $user=User::all();
@@ -131,7 +135,7 @@ return view('AariaData.admin.view',compact('AlltrackerData'));
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
 
       $user=User::all();
@@ -140,7 +144,16 @@ return view('AariaData.admin.view',compact('AlltrackerData'));
 
       return view('AariaData.admin.allSortedGet',compact('trackerData'));
 
+      //added code of search
+    //   $query=User::query();
+    //   if(request('id')){
+    //     $quer->where('id',request('id'));
+    //   }
+    //   $userData=$query->get();
+    // return view('AariaData.admin.allSortedGet',compact('userData'));
     }
+
+
 
     public function myview(Request $request, $id){
       // $AlltrackerData=Trackermaster::findOrFail($id);
@@ -190,5 +203,13 @@ return view('AariaData.admin.view',compact('AlltrackerData'));
     public function destroy($id)
     {
         //
+    }
+    public function search(Request $request){
+      $query=User::query();
+      if(request('id')){
+        $quer->where('id',request('id'));
+      }
+      $userData=$query->get();
+    return view('AariaData.admin.viewUser',compact('userData'));
     }
 }

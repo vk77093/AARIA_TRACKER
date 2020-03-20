@@ -21,7 +21,7 @@ class Tracker extends Controller
       //$userid=User::findOrFail($id);
       $id = Auth::id();
       $trackerData=Trackermaster::where('user_id','=',$id)->orderBy('id','desc')->paginate(4);
-        return view('AariaData.Userview',compact('trackerData'));
+        return view('AariaData.user.Userview',compact('trackerData'));
     }
 
     /**
@@ -31,7 +31,7 @@ class Tracker extends Controller
      */
     public function create()
     {
-        return view('AariaData.enterData');
+        return view('AariaData.user.enterData');
     }
 
     /**
@@ -66,7 +66,7 @@ return redirect('/trackerSubmit');
         $trackerData=Trackermaster::findOrFail($comp_name);
         //$trackerData=Trackermaster::findOrFail($comp_name);
         // return view('AariaData.secondAdd',compact('trackerData'));
-        return view('AariaData.hotelWise',compact('trackerData'));
+        return view('AariaData.user.hotelWise',compact('trackerData'));
     }
 
     // public function showCompName(){
@@ -84,7 +84,7 @@ return redirect('/trackerSubmit');
     {
       $trackerData=Trackermaster::findOrFail($id);
 
-      return view('AariaData.updatedata',compact('trackerData'));
+      return view('AariaData.user.updatedata',compact('trackerData'));
     }
 
     /**

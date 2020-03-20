@@ -79,13 +79,13 @@
       <td>{{$data->purposeVisit}}</td>
       <td>{{$data->mom}}</td>
       <td>{{$data->visitStatus}}</td>
-      <td class="wrappable" style="width:2px;height:2px;">{{$data->reviewpoints}}</td>
+      <td><textarea row="3" placeholder="{{$data->reviewpoints}}" disabled></textarea></td>
       <td>{{$data->comptbrand}}</td>
       <td>{{$data->Interested}}</td>
       <td>{{$data->callProd}}</td>
       <td>{{$data->dateOfVisit2}}</td>
       <td>{{$data->purposeVisit2}}</td>
-      <td>{{$data->remarks2}}</td>
+      <td><textarea class="form-control" row="3" placeholder="{{$data->remarks2}}" disabled></textarea></td>
       <td>{{$data->dateOfVisit3}}</td>
       <td>{{$data->purposeVisit3}}</td>
       <td>{{$data->remarks3}}</td>

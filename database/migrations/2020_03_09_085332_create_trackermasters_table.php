@@ -15,7 +15,8 @@ class CreateTrackermastersTable extends Migration
     {
         Schema::create('trackermasters', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('comp_name');
             $table->longText('address');
             $table->string('contact_person');
